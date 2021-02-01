@@ -1,0 +1,41 @@
+PODS:
+  - Applozic (7.14.0):
+    - SDWebImage (~> 5.9.2)
+  - ApplozicAudioVideo (0.1.0):
+    - Applozic (~> 7.14.0)
+    - TwilioVideo (~> 4.2)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - SDWebImage (5.9.5):
+    - SDWebImage/Core (= 5.9.5)
+  - SDWebImage/Core (5.9.5)
+  - TwilioVideo (4.2.0)
+
+DEPENDENCIES:
+  - ApplozicAudioVideo (from `../`)
+  - FBSnapshotTestCase
+
+SPEC REPOS:
+  trunk:
+    - Applozic
+    - FBSnapshotTestCase
+    - SDWebImage
+    - TwilioVideo
+
+EXTERNAL SOURCES:
+  ApplozicAudioVideo:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Applozic: 556521dca9f2007a0b8e30301dc6cf5db367e6aa
+  ApplozicAudioVideo: 273ae4414f3557d72cdcbe1e9be09c9440886e23
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
+  TwilioVideo: 094b79836ae4c1d05c0f162362176cd76b0ed872
+
+PODFILE CHECKSUM: 000649187412bad05bd6d5f2c13defacc6b47ad3
+
+COCOAPODS: 1.10.1

@@ -7,36 +7,25 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'ApplozicAudioVideo'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of ApplozicAudioVideo.'
+    s.name             = 'ApplozicAudioVideo'
+    s.version          = '0.1.0'
+    s.summary          = 'Applozic Audio Video iOS SDK'
+    s.description      = <<-DESC
+    The Applozic Audio Video SDK helps you to add audio, video calls with messaging into your iOS app.
+    DESC
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
-
-  s.homepage         = 'https://github.com/Sunilkumarr/ApplozicAudioVideo'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Sunilkumarr' => 'sunil@applozic.com' }
-  s.source           = { :git => 'https://github.com/Sunilkumarr/ApplozicAudioVideo.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.ios.deployment_target = '9.0'
-
-  s.source_files = 'ApplozicAudioVideo/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'ApplozicAudioVideo' => ['ApplozicAudioVideo/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+    s.homepage         = 'https://github.com/AppLozic/ApplozicAudioVideo'
+    s.license = { :type => "BSD 3-Clause", :file => "LICENSE" }
+    s.source           = { :git => 'https://github.com/AppLozic/ApplozicAudioVideo.git', :tag => s.version.to_s }
+    s.social_media_url = 'http://twitter.com/AppLozic'
+    s.authors = { 'Applozic Inc.' => 'support@applozic.com' }
+    s.swift_version = '5.0'
+    s.ios.deployment_target = '11.0'
+    s.source_files = 'ApplozicAudioVideo/**/*.{h,m,swift}'
+    s.requires_arc = true
+    s.resources = 'ApplozicAudioVideo/**/*.{lproj,storyboard,xib,xcassets,json}'
+    s.frameworks = 'CallKit'
+    s.dependency 'Applozic', '~> 7.14.0'
+    s.dependency 'TwilioVideo', '~> 4.2'
+    s.ios.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 end

@@ -22,6 +22,15 @@ DerivedData
 # Bundler
 .bundle
 
+## CocoaPods
+Pods/
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
