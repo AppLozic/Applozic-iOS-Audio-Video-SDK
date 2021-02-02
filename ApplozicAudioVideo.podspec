@@ -14,9 +14,9 @@ Pod::Spec.new do |s|
     The Applozic Audio Video SDK helps you to add audio, video calls with messaging into your iOS app.
     DESC
 
-    s.homepage         = 'https://github.com/AppLozic/ApplozicAudioVideo'
+    s.homepage         = 'https://github.com/AppLozic/Applozic-iOS-Audio-Video-SDK'
     s.license = { :type => "BSD 3-Clause", :file => "LICENSE" }
-    s.source           = { :git => 'https://github.com/AppLozic/ApplozicAudioVideo.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/AppLozic/Applozic-iOS-Audio-Video-SDK.git', :tag => s.version.to_s }
     s.social_media_url = 'http://twitter.com/AppLozic'
     s.authors = { 'Applozic Inc.' => 'support@applozic.com' }
     s.swift_version = '5.0'

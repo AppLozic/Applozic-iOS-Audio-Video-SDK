@@ -383,23 +383,28 @@
 }
 
 - (void)setAudioOutputSpeaker:(BOOL)enabled {
-    
+
     self.audioDevice.block =  ^ {
-        // We will execute `kTVIDefaultAVAudioSessionConfigurationBlock` first.
-        kTVIDefaultAVAudioSessionConfigurationBlock();
-        
         // Overwrite the audio route
         AVAudioSession *session = [AVAudioSession sharedInstance];
-        NSError *error = nil;
-        if (![session setMode:AVAudioSessionModeVoiceChat error:&error]) {
-            NSLog(@"AVAudiosession setMode %@",error);
+        AVAudioSessionMode audioMode = AVAudioSessionModeVideoChat;
+        if (!enabled) {
+            audioMode = AVAudioSessionModeVoiceChat;
         }
+        
+        NSError *error = nil;
+        if (session.mode != audioMode) {
+            if (![session setMode:audioMode error:&error]) {
+                NSLog(@"AVAudiosession setMode %@",error);
+            }
+        }
+
         AVAudioSessionPortOverride portMode = AVAudioSessionPortOverrideNone;
         if (enabled) {
             portMode = AVAudioSessionPortOverrideSpeaker;
         }
         if (![session overrideOutputAudioPort:portMode error:&error]) {
-            NSLog(@"AVAudiosession overrideOutputAudioPort %@",error);
+            NSLog(@"AVAudiosession overrideOutputAudioPort @ %@",error);
         }
     };
     self.audioDevice.block();
@@ -446,7 +451,7 @@
     
     // Configure the AVAudioSession by executign the audio device's `block`.
     self.audioDevice.block();
-    
+
     [self sendMessageAndEndActiveCallWithCompletion:^(NSError *error) {
         if (error) {
             NSLog(@"Error in provider:performStartCallAction: %@", error.localizedDescription);
@@ -473,7 +478,7 @@
     
     // Configure the AVAudioSession by executign the audio device's `block`.
     self.audioDevice.block();
-    
+
     [self sendMessageAndEndActiveCallWithCompletion:^(NSError *error) {
         if (error) {
             NSLog(@"Error in provider:performAnswerCallAction: %@", error.localizedDescription);

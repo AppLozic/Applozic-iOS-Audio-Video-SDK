@@ -394,8 +394,6 @@
     [ALUserDefaultsHandler setFILEURL:@"https://mobi-com-alpha.appspot"];
 
     [ALApplozicSettings setAudioVideoClassName:@"ALAudioVideoCallVC"];
-    [ALApplozicSettings setClientStoryBoard:@"Main"];
-
     [ALApplozicSettings setAudioVideoEnabled:YES];
     /*********************************************  NAVIGATION SETTINGS  ********************************************/
 
