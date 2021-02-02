@@ -390,9 +390,6 @@
 -(void)ALDefaultChatViewSettings
 {
 
-    [ALUserDefaultsHandler setBASEURL:@"https://staging.applozic.com"];
-    [ALUserDefaultsHandler setFILEURL:@"https://mobi-com-alpha.appspot"];
-
     [ALApplozicSettings setAudioVideoClassName:@"ALAudioVideoCallVC"];
     [ALApplozicSettings setAudioVideoEnabled:YES];
     /*********************************************  NAVIGATION SETTINGS  ********************************************/
