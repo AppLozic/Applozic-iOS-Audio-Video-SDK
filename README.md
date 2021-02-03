@@ -1,6 +1,7 @@
 # Applozic iOS Audio Video SDK 
 
-This project is a Cocoapods sample project for audio-video calls with messaging SDK
+This project is a Cocoapods sample project for Audio-Video calls with messaging SDK.
+The AppLozic Audio-Video Call SDK provides high quality IP audio and video calls. With this SDK, your application's users can take part in secure 1-to-1 calls.
 
 ## Example
 
@@ -23,7 +24,7 @@ It's beta SDK
 
 - Make sure that your project meets these requirements:
 
- * Your project must target iOS 11 or later.
+  * Your project must target iOS 11 or later.
 
 - Set up a physical iOS device to run your app
 
@@ -98,7 +99,13 @@ For Apple to send these notifications, would have to create an APNs certificate 
 
 1. Visit this [link](https://developer.apple.com/account/resources/certificates/add), to create Apple Push Notification service SSL (Sandbox) i.e development certificate
 
-2. Visit this [link](https://developer.apple.com/account/resources/certificates/add), to create Apple Push Notification service SSL (Sandbox & Production) i.e distribution certificate  
+   ![apns-development-certificate](https://raw.githubusercontent.com/AppLozic/Applozic-iOS-Audio-Video-SDK/main/Images/apns-development-certificate.png "apns-development-certificate")
+
+
+2. Visit this [link](https://developer.apple.com/account/resources/certificates/add), to create Apple Push Notification service SSL (Sandbox & Production) i.e distribution certificate
+
+   ![apns-distribution-certificate](https://raw.githubusercontent.com/AppLozic/Applozic-iOS-Audio-Video-SDK/main/Images/apns-distribution.png "apns-distribution-certificate")
+
 
 Once the certificates are created you can download them and export the p12 files with password for development and distribution certificate either from Keychain Acess from Mac.  
 
@@ -109,13 +116,18 @@ Upload your push notification certificates (mentioned above) to the Applozic con
 
 Go to Applozic [console](https://console.applozic.com/settings/pushnotification) push notification section to upload the APNs development and distribution certificates
 
+   ![apns-certificate-upload](https://raw.githubusercontent.com/AppLozic/Applozic-iOS-Audio-Video-SDK/main/Images/apns-certificate-upload.png
+ "apns-certificate-upload")
+
 
 #### Creating VOIP certificate
 
 VOIP certificate is required for sending incoming call notification from applozic to your app
 
-Visit this [link](https://developer.apple.com/account/resources/certificates/add), to create VoIP Services Certificate
-
+1. Visit this [link](https://developer.apple.com/account/resources/certificates/add), to create VoIP Services Certificate
+  
+  ![VOIP-certificate](https://raw.githubusercontent.com/AppLozic/Applozic-iOS-Audio-Video-SDK/main/Images/VOIP-certificate.png "VOIP-certificate")
+ 
 Once the certificate is created download that and export the p12 file with password from the downloaded certificate either from Keychain Acess from Mac.
 
 and contact `support@applozic.com` via email for uploading this VOIP certificate as we dont have the option to upload this from the applozic console right now
@@ -132,6 +144,11 @@ Next Click (+ Capability) to add "Background modes" enable this below four optio
  * "Voice over IP"
  * "Background fetch"
  * "Remote notifications"
+ 
+Following screenshot would be of help.
+
+![xcode-capability](https://raw.githubusercontent.com/AppLozic/Applozic-iOS-Audio-Video-SDK/main/Images/xcode-capability.png
+ "xcode-capability")
  
  
 #### Configure the push notification in the Appdelegate file of your project.
