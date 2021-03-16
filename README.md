@@ -1,3 +1,8 @@
+## Applozic iOS Audio Video SDK 
+
+This project is a Cocoapods sample project for Audio-Video calls with messaging SDK.
+The AppLozic Audio-Video Call SDK provides high quality IP audio and video calls. With this SDK, your application's users can take part in secure 1-to-1 calls.
+
 ## Overview
 
 Applozic brings real-time engagement with chat, video, and voice to your web,
@@ -16,11 +21,6 @@ customizable UI kit, and flexible platform APIs.
 Chat, video, and audio-calling have become the new norm in the post-COVID era,
 and we're bridging the gap between businesses and customers by delivering those
 exact solutions.
-
-## Applozic iOS Audio Video SDK 
-
-This project is a Cocoapods sample project for Audio-Video calls with messaging SDK.
-The AppLozic Audio-Video Call SDK provides high quality IP audio and video calls. With this SDK, your application's users can take part in secure 1-to-1 calls.
 
 
 ## Example
