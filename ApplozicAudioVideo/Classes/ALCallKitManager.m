@@ -1,5 +1,5 @@
 #import "ALCallKitManager.h"
-#import "Applozic/ALContactDBService.h"
+#import <ApplozicCore/ApplozicCore.h>
 #import <TwilioVideo/TwilioVideo.h>
 #import "ALAudioVideoSettings.h"
 
@@ -161,11 +161,11 @@
         
         [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                              andReceiverId:callModel.userId
-                                            andContentType:AV_CALL_CONTENT_TWO
+                                            andContentType:AV_CALL_HIDDEN_NOTIFICATION
                                                 andMsgText:callModel.roomId withCompletion:^(NSError *error) {
             [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                                  andReceiverId:callModel.userId
-                                                andContentType:AV_CALL_CONTENT_THREE
+                                                andContentType:AV_CALL_MESSAGE
                                                     andMsgText:@"CALL MISSED" withCompletion:^(NSError *error) {
                 completion(error);
                 return;
@@ -181,7 +181,7 @@
         
         [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                              andReceiverId:callModel.userId
-                                            andContentType:AV_CALL_CONTENT_TWO
+                                            andContentType:AV_CALL_HIDDEN_NOTIFICATION
                                                 andMsgText:callModel.roomId withCompletion:^(NSError *error) {
             completion(error);
             return;
@@ -202,7 +202,7 @@
                 [dictionary setObject:callDuration forKey:@"CALL_DURATION"];
                 [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                                      andReceiverId:callModel.userId
-                                                    andContentType:AV_CALL_CONTENT_THREE
+                                                    andContentType:AV_CALL_MESSAGE
                                                         andMsgText:@"CALL ENDED"
                                                     withCompletion:^(NSError *error) {
                     completion(error);

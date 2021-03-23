@@ -4,7 +4,6 @@ platform :ios, '11.0'
 
 target 'ApplozicAudioVideo_Example' do
   pod 'ApplozicAudioVideo', :path => '../'
-
   target 'ApplozicAudioVideo_Tests' do
     inherit! :search_paths
 

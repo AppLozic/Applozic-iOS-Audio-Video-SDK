@@ -68,7 +68,7 @@
 
 -(void)handleAVMsg:(ALMessage *)alMessage {
 
-    if (alMessage.contentType == AV_CALL_CONTENT_TWO) {
+    if (alMessage.contentType == AV_CALL_HIDDEN_NOTIFICATION) {
         if (![ALApplozicSettings isAudioVideoEnabled]) {
             ALSLog(ALLoggerSeverityInfo, @" video/audio call not enables  ");
             return;
@@ -106,7 +106,7 @@
             if (callkit.activeCallModel && [callkit.activeCallModel.roomId isEqualToString:roomId]) {
                 [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                                      andReceiverId:alMessage.to
-                                                    andContentType:AV_CALL_CONTENT_THREE
+                                                    andContentType:AV_CALL_MESSAGE
                                                         andMsgText:roomId withCompletion:^(NSError *error) {
                 }];
             }

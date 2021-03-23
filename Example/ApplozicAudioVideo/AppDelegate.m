@@ -32,7 +32,12 @@
     // Register for Applozic notification tap actions and network change notifications
     ALAppLocalNotifications *localNotification = [ALAppLocalNotifications appLocalNotificationHandler];
     [localNotification dataConnectionNotificationHandler];
+
     [[ALAudioVideoCallHandler shared] dataConnectionNotificationHandler];
+
+    ALPushNotificationHandler *pushNotificationHandler = [ALPushNotificationHandler shared];
+    [pushNotificationHandler dataConnectionNotificationHandler];
+
 
     if ([ALUserDefaultsHandler isLoggedIn])
     {
