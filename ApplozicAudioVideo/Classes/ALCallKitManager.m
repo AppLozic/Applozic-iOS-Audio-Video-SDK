@@ -86,6 +86,7 @@
         __weak typeof(self) weakSelf = self;
         callModel.unansweredHandlerCallBack = ^(ALAVCallModel *model) {
             [weakSelf sendEndCallWithCallModel:model
+                        withUserClickedEndCall:NO
                                 withCompletion:^(NSError *error) {
                 [weakSelf removeModelWithCallUUID:model.callUUID.UUIDString];
                 [weakSelf reportOutgoingCall:model.callUUID withCXCallEndedReason:CXCallEndedReasonUnanswered];
@@ -151,14 +152,13 @@
 }
 
 -(void) sendEndCallWithCallModel:(ALAVCallModel *)callModel
+          withUserClickedEndCall:(BOOL) isUserClickedCallEnd
                   withCompletion:(void(^)(NSError * error)) completion {
-    if ([callModel.launchFor isEqualToNumber:[NSNumber numberWithInt:AV_CALL_DIALLED]] && !callModel.startTime)
-    {
-        //        SELF CALLED AND SELF REJECT : SEND MISSED MSG : WITHOUT TALK
+    if (!isUserClickedCallEnd) {
         NSMutableDictionary * dictionary = [ALVOIPNotificationHandler getMetaData:AL_CALL_MISSED
                                                                      andCallAudio:callModel.callForAudio
                                                                         andRoomId:callModel.roomId];
-        
+
         [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                              andReceiverId:callModel.userId
                                             andContentType:AV_CALL_HIDDEN_NOTIFICATION
@@ -171,9 +171,27 @@
                 return;
             }];
         }];
-    }
-    else if ([callModel.launchFor isEqualToNumber:[NSNumber numberWithInt:AV_CALL_RECEIVED]] && !callModel.startTime)
-    {
+    } else if ([callModel.launchFor isEqualToNumber:[NSNumber numberWithInt:AV_CALL_DIALLED]]
+               && !callModel.startTime) {
+        //        SELF CALLED AND SELF REJECT : SEND MISSED MSG : WITHOUT TALK
+        NSMutableDictionary * dictionary = [ALVOIPNotificationHandler getMetaData:AL_CALL_MISSED
+                                                                     andCallAudio:callModel.callForAudio
+                                                                        andRoomId:callModel.roomId];
+
+        [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
+                                             andReceiverId:callModel.userId
+                                            andContentType:AV_CALL_HIDDEN_NOTIFICATION
+                                                andMsgText:callModel.roomId withCompletion:^(NSError *error) {
+            [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
+                                                 andReceiverId:callModel.userId
+                                                andContentType:AV_CALL_MESSAGE
+                                                    andMsgText:@"CALL MISSED" withCompletion:^(NSError *error) {
+                completion(error);
+                return;
+            }];
+        }];
+    } else if ([callModel.launchFor isEqualToNumber:[NSNumber numberWithInt:AV_CALL_RECEIVED]]
+               && !callModel.startTime) {
         //        SELF IS RECEIVER AND REJECT CALL : SEND REJECT MSG : WITHOUT TALK
         NSMutableDictionary * dictionary = [ALVOIPNotificationHandler getMetaData:AL_CALL_REJECTED
                                                                      andCallAudio:callModel.callForAudio
@@ -248,6 +266,7 @@
 -(void)sendMessageAndEndActiveCallWithCompletion:(void(^)(NSError * error))completion {
     if (self.activeCallModel) {
         [self sendEndCallWithCallModel:self.activeCallModel
+                withUserClickedEndCall:YES
                         withCompletion:^(NSError *error) {
             if (error) {
                 completion(error);
@@ -517,7 +536,9 @@
         ALAVCallModel *callModel = [self.callListModels valueForKey:callUUIDString];
         callModel.unansweredCallTimerActive = NO;
         self.callListModels[callUUIDString] = callModel;
-        [self sendEndCallWithCallModel:callModel withCompletion:^(NSError *error) {
+        [self sendEndCallWithCallModel:callModel
+                withUserClickedEndCall:YES
+                        withCompletion:^(NSError *error) {
             [[UIApplication sharedApplication] endBackgroundTask:identifer];
 
             if (callModel.roomId == self.activeCallViewController.roomID) {

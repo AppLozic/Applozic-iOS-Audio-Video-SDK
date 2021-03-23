@@ -44,6 +44,7 @@
 
 // Send end call with model
 -(void)sendEndCallWithCallModel:(ALAVCallModel *)callModel
+         withUserClickedEndCall:(BOOL) isUserClickedCallEnd
                  withCompletion:(void(^)(NSError * error))completion;
 
 // End the active call view controller and report to callKit Provider

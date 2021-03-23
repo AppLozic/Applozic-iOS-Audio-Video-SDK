@@ -45,7 +45,8 @@
                                                                    andContentType:contentType
                                                                     andReceiverId:userId
                                                                    andMessageText:msgText];
-    
+
+    messageWithMetaData.source = AL_SOURCE_IOS;
     [[ALMessageService sharedInstance] sendMessages:messageWithMetaData withCompletion:^(NSString *message, NSError *error) {
         
         ALSLog(ALLoggerSeverityInfo, @"AUDIO/VIDEO MSG_RESPONSE :: %@",message);
@@ -94,23 +95,10 @@
             // MULTI_DEVICE (WHEN RECEIVER CUTS FROM ANOTHER DEVICE)
             // STOP RINGING AND DISMISSVIEW : CHECK INCOMING CALL_ID and CALL_ID OF OPEPENED VIEW
 
-            NSMutableDictionary * dictionary = [ALVOIPNotificationHandler getMetaData:AL_CALL_REJECTED
-                                                                         andCallAudio:isAudio
-                                                                            andRoomId:roomId];
-
             ALSLog(ALLoggerSeverityInfo, @"CALL_IS_REJECTED");
             [ALNotificationView showNotification:@"Participant Busy"];
 
             ALCallKitManager *callkit = [ALCallKitManager sharedManager];
-
-            if (callkit.activeCallModel && [callkit.activeCallModel.roomId isEqualToString:roomId]) {
-                [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
-                                                     andReceiverId:alMessage.to
-                                                    andContentType:AV_CALL_MESSAGE
-                                                        andMsgText:roomId withCompletion:^(NSError *error) {
-                }];
-            }
-
             NSArray *parts = [roomId componentsSeparatedByString:@":"];
             if (parts.count > 1) {
                 NSString *uuidString = parts[0];
