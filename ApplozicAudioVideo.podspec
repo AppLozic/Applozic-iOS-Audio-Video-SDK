@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'ApplozicAudioVideo'
-    s.version          = '0.1.0'
+    s.version          = '0.2.0'
     s.summary          = 'Applozic Audio Video iOS SDK'
     s.description      = <<-DESC
     The Applozic Audio Video SDK helps you to add audio, video calls with messaging into your iOS app.
