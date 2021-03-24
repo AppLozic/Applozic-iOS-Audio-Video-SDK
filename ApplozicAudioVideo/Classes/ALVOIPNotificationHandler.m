@@ -76,7 +76,6 @@
         }
 
         NSString *msgType = (NSString *)[alMessage.metadata objectForKey:ALCallMessageTypeKey];
-        BOOL isAudio = [[alMessage.metadata objectForKey:ALCallAudioOnlyKey] boolValue];
         NSString *roomId = (NSString *)[alMessage.metadata objectForKey:ALCallerIDKey];
 
         if ([msgType isEqualToString:AL_CALL_ANSWERED]) {
