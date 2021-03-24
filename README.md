@@ -209,6 +209,9 @@ Add the following code in AppDelegate class, this function will be called after 
     ALAppLocalNotifications *localNotification = [ALAppLocalNotifications appLocalNotificationHandler];
     [localNotification dataConnectionNotificationHandler];
     [[ALAudioVideoCallHandler shared] dataConnectionNotificationHandler];
+    
+    ALPushNotificationHandler *pushNotificationHandler = [ALPushNotificationHandler shared];
+    [pushNotificationHandler dataConnectionNotificationHandler];
 
     // Override point for customization after application launch.
     NSLog(@"launchOptions: %@", launchOptions);
