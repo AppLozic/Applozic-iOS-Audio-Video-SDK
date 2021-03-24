@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
     s.requires_arc = true
     s.resources = 'ApplozicAudioVideo/**/*.{lproj,storyboard,xib,xcassets,json}'
     s.frameworks = 'CallKit'
-    s.dependency 'Applozic', '~> 7.14.0'
-    s.dependency 'TwilioVideo', '~> 4.2'
+    s.dependency 'Applozic', '~> 8.0.0'
+    s.dependency 'TwilioVideo', '~> 4.3'
     s.ios.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 end

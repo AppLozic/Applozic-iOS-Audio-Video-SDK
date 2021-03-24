@@ -8,6 +8,7 @@
 
 #import "ALAudioVideoCallVC.h"
 #import "ALCallKitManager.h"
+#import <SDWebImage/SDWebImage.h>
 
 NSString * const AL_CALL_DIALED = @"CALL_DIALED";
 NSString * const AL_CALL_ANSWERED = @"CALL_ANSWERED";
@@ -103,7 +104,8 @@ NSString * const AL_CALL_END = @"CALL_END";
     [self.UserDisplayName setText:self.displayName];
     if (self.imageURL.length)
     {
-        [ALUtilityClass setImageFromURL:self.imageURL andImageView:self.userProfile];
+        [self.userProfile sd_setImageWithURL:[NSURL URLWithString:self.imageURL]
+                            placeholderImage:[self getImageWithImageName:@"ic_contact_picture_holo_light.png"]];
     }
     
     [self.callAcceptReject setHidden:YES];
@@ -263,12 +265,12 @@ NSString * const AL_CALL_END = @"CALL_END";
     {
         buttonHide = NO;
     }
-    [ALUtilityClass movementAnimation:self.muteUnmute andHide:buttonHide];
-    [ALUtilityClass movementAnimation:self.loudSpeaker andHide:buttonHide];
+    [ALUIUtilityClass movementAnimation:self.muteUnmute andHide:buttonHide];
+    [ALUIUtilityClass movementAnimation:self.loudSpeaker andHide:buttonHide];
     if (!self.callForAudio)
     {
-        [ALUtilityClass movementAnimation:self.cameraToggle andHide:buttonHide];
-        [ALUtilityClass movementAnimation:self.videoShare andHide:buttonHide];
+        [ALUIUtilityClass movementAnimation:self.cameraToggle andHide:buttonHide];
+        [ALUIUtilityClass movementAnimation:self.videoShare andHide:buttonHide];
     }
 }
 
@@ -289,11 +291,11 @@ NSString * const AL_CALL_END = @"CALL_END";
                                                                             andRoomId:self.roomID];
             [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                                  andReceiverId:self.receiverID
-                                                andContentType:AV_CALL_CONTENT_TWO
+                                                andContentType:AV_CALL_HIDDEN_NOTIFICATION
                                                     andMsgText:self.roomID withCompletion:^(NSError *error) {
                 [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                                      andReceiverId:self.receiverID
-                                                    andContentType:AV_CALL_CONTENT_THREE
+                                                    andContentType:AV_CALL_MESSAGE
                                                         andMsgText:@"CALL MISSED" withCompletion:^(NSError *error) {
                     [self.room disconnect];
                 }];
@@ -411,7 +413,7 @@ NSString * const AL_CALL_END = @"CALL_END";
         [self doConnect];
         [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                              andReceiverId:self.receiverID
-                                            andContentType:AV_CALL_CONTENT_TWO
+                                            andContentType:AV_CALL_HIDDEN_NOTIFICATION
                                                 andMsgText:self.roomID withCompletion:^(NSError *error) {
             
         }];
@@ -429,7 +431,7 @@ NSString * const AL_CALL_END = @"CALL_END";
         [self doConnect];
         [ALVOIPNotificationHandler sendMessageWithMetaData:dictionary
                                              andReceiverId:self.receiverID
-                                            andContentType:AV_CALL_CONTENT_TWO
+                                            andContentType:AV_CALL_HIDDEN_NOTIFICATION
                                                 andMsgText:self.roomID withCompletion:^(NSError *error) {
             
         }];

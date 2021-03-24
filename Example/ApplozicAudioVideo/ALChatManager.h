@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Applozic/ALChatLauncher.h>
-#import <Applozic/ALUser.h>
-#import <Applozic/ALConversationService.h>
-#import <Applozic/ALRegisterUserClientService.h>
+#import <Applozic/Applozic.h>
 
 #define APPLICATION_ID @"applozic-sample-app" //prod
 

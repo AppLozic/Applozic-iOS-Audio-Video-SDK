@@ -52,7 +52,15 @@ NSString * const ALCallAudioOnlyKey = @"CALL_AUDIO_ONLY";
             NSString *displayName = messagePartsArray[1];
             NSString *imageURL = nil;
             if (messagePartsArray.count > 2) {
-                imageURL = messagePartsArray[2];
+                NSString * imageUrlPart = messagePartsArray[2];
+                /// Check if the second part is http or https else use the original image url
+                if ([imageUrlPart isEqualToString:@"https"] || [imageUrlPart isEqualToString:@"http"]) {
+                    if (messagePartsArray.count > 3) {
+                        imageURL = [[NSString alloc] initWithFormat:@"%@:%@", imageUrlPart, messagePartsArray[3]];
+                    }
+                } else {
+                    imageURL = imageUrlPart;
+                }
             }
 
             NSString *callId = metadataDictionary[ALCallerIDKey];

@@ -7,13 +7,12 @@
 //
 
 #import "ALAudioVideoUtils.h"
-#import <Applozic/Applozic.h>
 
 @implementation ALAudioVideoUtils
 
 + (void)retrieveAccessTokenFromURL:(NSString *)tokenURLStr
                         completion:(void (^)(NSString* token, NSError *err)) completionHandler {
-
+    
     NSString * theUrlString = [NSString stringWithFormat:@"%@", tokenURLStr];
 
 

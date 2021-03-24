@@ -7,16 +7,7 @@
 //
 
 #import "ApplozicLoginViewController.h"
-#import <Applozic/ALUser.h>
-#import <Applozic/ALUserDefaultsHandler.h>
-#import <Applozic/ALMessageClientService.h>
-#import <Applozic/ALRegistrationResponse.h>
-#import <Applozic/ALRegisterUserClientService.h>
-#import <Applozic/ALMessagesViewController.h>
-#import <Applozic/ALApplozicSettings.h>
-#import <Applozic/ALDataNetworkConnection.h>
-#import <Applozic/ALChatLauncher.h>
-#import <Applozic/ALMessageDBService.h>
+#import <Applozic/Applozic.h>
 #import "ALChatManager.h"
 #import "LaunchChatFromSimpleViewController.h"
 
@@ -151,13 +142,13 @@
     
     if (self.userIdField.text.length == 0)
     {
-        [ALUtilityClass showAlertMessage:@"UserId can't be blank" andTitle:@"Error"];
+        [ALUIUtilityClass showAlertMessage:@"UserId can't be blank" andTitle:@"Error"];
         return;
     }
     
     if (self.passwordField.text.length == 0)
     {
-        [ALUtilityClass showAlertMessage:@"Password can't be blank" andTitle:@"Error"];
+        [ALUIUtilityClass showAlertMessage:@"Password can't be blank" andTitle:@"Error"];
         return;
     }
     
